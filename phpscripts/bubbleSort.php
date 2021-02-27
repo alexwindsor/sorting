@@ -21,8 +21,8 @@ $nums = array(43, 76, 12, 8, 88, 65, 5);
 
 
 echo "Original array:\n\n";
-print_r($nums);
-echo "\n---------\n";
+echo implode(" ", $nums);
+echo "<br><hr><br>";
 
 $stop = 0; // indicates array sorted
 $arr_size = count($nums); // length of array
@@ -31,11 +31,10 @@ $count = 1; // count num of iterations - not needed for the code
 // we keep repeating the inner loop until the whole array is sorted
 while ($stop == 0) {
 
-  echo implode(", ", $nums) . "<br>";
+  echo "<u>loop # " . $count++ . "</u> : ";
+  echo implode(" ", $nums) . "<br>";
 
   $flag = 0; // indicates whether we have made a swap. if we loop through the whole array without swapping two numbers, means that the array is sorted
-
-  echo "loop # " . $count++ . "..<br>";
 
   // a and b are two values from the array next to eachother which we swap over if b is less than a
   $a = null;
@@ -48,26 +47,26 @@ while ($stop == 0) {
     // if $a isn't set then we must be at the first number, so we store that at $a
     if (!$a) {
       $a = $nums[$i];
-      echo ".....a=" . $a . "<br>";
     }
 
 
     // if a has a value and b is null then we need to get the value for b and compare it to a. if it is less than a then we swap the corresponding values in nums array
     elseif (!$b) {
       $b = $nums[$i];
-        echo ".....b=" . $b . "<br>";
         // compare a with b
+        echo "is " . $b . "<" . $a . " ? ";
       if ($b < $a) {
         // swap corresponding values in the array so the lower value has the lower index
-        echo "!!! - b(" . $b . ") is less than a(" . $a . "), so we swap them around";
-        $nums[$i-1] = intval($b);
-        $nums[$i] = intval($a);
-        $i = $i - 1;
+        echo "Yes, so we swap them around.";
+        $nums[$i-1] = $b;
+        $nums[$i] = $a;
+        // $i = $i - 1;
         $flag = 1; // set flag to indicate that we did a swap
       }
+      else echo "No";
       // shift everything along one so we can start again at next loop
-      echo "...we move along the array now";
-      $a = intval($b);
+      echo "...moving along the array now<br><br>";
+      $a = $b;
       $b = null;
       }
 
@@ -86,4 +85,5 @@ while ($stop == 0) {
 
 // display sorted array
 echo "<br><hr><br>";
-print_r($nums);
+echo implode(" ", $nums);
+echo "<br><hr><br><br>";

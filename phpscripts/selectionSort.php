@@ -16,7 +16,7 @@ $nums = array(43, 76, 12, 8, 88, 65, 5);
 
 echo "Original array:<br><br>";
 
-echo implode(", ", $nums);
+echo implode(" ", $nums);
 
 echo "<br><hr><br>";
 
@@ -53,8 +53,7 @@ for ($j = 0; $j < $arr_size; $j++) {
   $nums[$lowest[0]] = $nums[$slice];
   $nums[$slice] = $lowest[1];
 
-  $new_array = implode(", ", $nums);
-  echo "swapped lowest with the furthest to the left: " . $new_array . "<br><br>";
+  echo "swapped lowest with the furthest to the left: " . implode(" ", $nums) . "<br><br>";
 
   $slice++; // then increment slice
 
@@ -64,4 +63,5 @@ for ($j = 0; $j < $arr_size; $j++) {
 
 // display sorted array
 echo "<br><hr><br>";
-echo implode(", ", $nums);
+echo implode(" ", $nums);
+echo "<br><hr><br><br>";
