@@ -24,61 +24,42 @@ echo "Original array:\n\n";
 echo implode(" ", $nums);
 echo "<br><hr><br>";
 
-$stop = 0; // indicates array sorted
+$stop = 0; // when it is 1 everything is in order
+
 $arr_size = count($nums); // length of array
 $count = 1; // count num of iterations - not needed for the code
 
 // we keep repeating the inner loop until the whole array is sorted
-while ($stop == 0) {
+while ($stop === 0) {
 
-  echo "<u>loop # " . $count++ . "</u> : ";
-  echo implode(" ", $nums) . "<br>";
+  echo "<u>Start of array: " . implode(" ", $nums) . "</u><br>";
 
-  $flag = 0; // indicates whether we have made a swap. if we loop through the whole array without swapping two numbers, means that the array is sorted
+  $swapped = 0; // if '1' then we have done a swap
 
-  // a and b are two values from the array next to eachother which we swap over if b is less than a
-  $a = null;
-  $b = null;
+  for ($pointer = 0; $pointer < $arr_size -1; $pointer++) {
 
-  // loop through the array
-  for ($i = 0; $i < $arr_size; $i++)
-  {
+    $a = $nums[$pointer];
+    $b = $nums[$pointer+1];
 
-    // if $a isn't set then we must be at the first number, so we store that at $a
-    if (!$a) {
-      $a = $nums[$i];
+    echo "is $a > $b ? ";
+
+    if ($a > $b) {
+      echo "YES - we swap them round.";
+      $nums[$pointer] = $b;
+      $nums[$pointer+1] = $a;
+      $swapped = 1;
     }
+    else echo "No.";
+    echo "Shift along..<br>";
 
-
-    // if a has a value and b is null then we need to get the value for b and compare it to a. if it is less than a then we swap the corresponding values in nums array
-    elseif (!$b) {
-      $b = $nums[$i];
-        // compare a with b
-        echo "is " . $b . "<" . $a . " ? ";
-      if ($b < $a) {
-        // swap corresponding values in the array so the lower value has the lower index
-        echo "Yes, so we swap them around.";
-        $nums[$i-1] = $b;
-        $nums[$i] = $a;
-        // $i = $i - 1;
-        $flag = 1; // set flag to indicate that we did a swap
-      }
-      else echo "No";
-      // shift everything along one so we can start again at next loop
-      echo "...moving along the array now<br><br>";
-      $a = $b;
-      $b = null;
-      }
-
-    }
+  }
 
 
   // if we went through the whole loop without doing any swaps then the array is fully sorted and we can exit the loop
-  if ($flag == 0) {
-    $stop = 1;
+  if ($swapped === 0) {
     echo "FINISHED.";
+    $stop = 1;
   }
-
 }
 
 
