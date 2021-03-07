@@ -29,25 +29,25 @@ for ($slice = 1; $slice < $arr_size; $slice++) {
   // record the value and delete index in the array
   $tempnum = $nums[$slice];
 
-  echo "<b>(" . $slice . ")" . $tempnum . "</b><br>";
+  echo "<b>compare: cols# " . $slice . " /  : " . $tempnum . "</b><br>";
 
 
   // loop through all the indexes in the array to the left (lesser) of the value that we deleted. keep shifting all the indexes along until we get to a value less than the value, then put it in the index in front
   for ($i = $slice - 1; $i >= 0; $i--) {
 
     // if value is greater than the value we deleted
-    echo "is " . $nums[$i] . ">" . $tempnum . "? ";
+    echo "is " . $tempnum . "<" . $nums[$i] . "? ";
 
     if ($nums[$i] > $tempnum) {
       echo "yes ";
       // shift the index up to the deleted gap, then next loop we check the next value to the left
       $nums[$i+1] = $nums[$i];
       $nums[$i] = $tempnum;
-      echo " shift along <--- ! <br>";
+      echo "yes - swap them and compare backwards <--- ! <br>";
     }
     // if the value we are comparing is less, then we stop looping and insert our value in the gap above
     else {
-      echo "no - move on to the next number<br>";
+      echo "no - move forward to the next number<br>";
       break;
     }
 
